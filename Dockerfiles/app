@@ -1,0 +1,11 @@
+#fetch tomcat 
+FROM tomcat:8-jre11
+#remove any type of application
+RUN rm -rf /usr/local/tomcat/webapps/*
+#copy the artifact
+COPY target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+#command to run tomcat 
+CMD ["catalina.sh", "run"]
+WORKDIR /usr/local/tomcat/
+VOLUME /usr/local/tomcat/webapps
